@@ -1,116 +1,120 @@
 --- Branding: ---
+
 Logo: ![image](https://github.com/user-attachments/assets/1755a47e-8fbc-419f-915c-b88a16415db0)
+
 Slogan: Dream it, Raffle it, Win it!
-Color Palette: https://coolors.co/1b3a1b-a4d65e-333333-eaeaea-ffffff
 
---- Estructura del proyecto: ---
-# 🎟️ Plataforma de Venta de Boletas para Rifas Online
+Color Palette: ![image](https://github.com/user-attachments/assets/65b30aa6-74d6-40a2-ba8d-5be0be2cf715)
 
-## 1. Descripción General
-El proyecto consiste en el desarrollo de una plataforma web que permite la venta de boletas para participar en rifas organizadas por usuarios. Las rifas estarán vinculadas con los sorteos de la Lotería de Medellín, y cada boleta comprada corresponde a un número aleatorio que le da la oportunidad al usuario de ganar.
 
-*Tipos de usuarios en la plataforma:*
-- 👑 *Administrador*: Gestiona la plataforma, usuarios y rifas.
-- 🌟 *Organizador*: Crea rifas, compra boletas y gestiona sus rifas.
-- 👤 *Cliente*: Compra boletas para rifas activas y participa en ellas.
-- 👥 *Invitados*: Exploran la plataforma, pero deben registrarse para participar.
+--- Project Structure: ---
+# 🎟️ Platform for Online Raffle Ticket Sales
 
-## 2. Objetivo del Proyecto
-Ofrecer una plataforma segura y sencilla que permita:  
-- A los organizadores, *crear rifas* personalizadas.  
-- A los clientes, *comprar boletas* y participar en rifas.  
-- A los administradores, *supervisar* rifas y gestionar usuarios.  
+## 1. General Description.
+The project consists of the development of a web platform that allows the sale of tickets to participate in raffles organized by users. The raffles will be linked to the drawings of the Medellin Lottery, and each ticket purchased corresponds to a random number that gives the user the opportunity to win.
 
-## 3. Funcionalidades Principales
+*Types of users on the platform:*.
+- 👑 *Administrator*: Manages the platform, users and raffles.
+- 🌟 *Organizer*: Creates raffles, buys ballots and manages his raffles.
+- 👤 *Customer*: Buys tickets for active raffles and participates in them.
+- 👥 *Guests*: Explore the platform, but must register to participate.
 
-### 3.1. Funcionalidades por Rol
-- *Administrador* 👑  
-  - Gestionar rifas (activar, desactivar, eliminar).
-  - Gestionar usuarios (suspender cuentas, cambiar roles).
-  - Ver reportes 📊 de ventas.
-  - Supervisar rifas activas y finalizadas.
+## 2. Project Objective.
+To offer a secure and simple platform that allows:  
+- To organizers, *create customized raffles*.  
+- To customers, *purchase tickets* and participate in raffles.  
+- To administrators, *supervise* raffles and manage users.  
 
-- *Organizador* 🌟  
-  - Crear rifas indicando:
-    - Nombre, descripción, precio por boleta.
-    - Cantidad máxima de boletas y fecha límite.
-  - Ver estadísticas 📈 de participación.
-  - Comprar boletas como cliente.
+## 3. Main functionalities
 
-- *Cliente* 👤  
-  - Ver rifas disponibles.
-  - Comprar boletas para rifas activas.
-  - Consultar historial de compras.
+### 3.1. Functionalities per Role
+- *Administrator* 👑  
+  - Manage raffles (activate, deactivate, delete).
+  - Manage users (suspend accounts, change roles).
+  - View sales reports 📊.
+  - Monitor active and completed raffles.
 
-- *Invitado* 👥  
-  - Explorar rifas activas y estadísticas generales.
-  - Registrarse para participar.
+- Organizer 🌟 🌟  
+  - Create raffles indicating:
+    - Name, description, price per ballot.
+    - Maximum number of ballots and deadline.
+  - View statistics 📈 of participation.
+  - Purchase ballots as a customer.
 
-## 4. Flujo de Procesos
+- Customer 👤 👤  
+  - View available raffles.
+  - Buy tickets for active raffles.
+  - Consult purchase history.
 
-### 4.1. Flujo de Creación de Rifa
-1. Login del organizador.
-2. Accede al dashboard.
-3. Crea una rifa con los datos requeridos.
-4. La rifa queda visible para los usuarios.
-5. El organizador monitorea las ventas.
+- *Guest* 👥  
+  - Browse active raffles and general statistics.
+  - Register to participate.
 
-### 4.2. Flujo de Compra de Boletas
-1. El cliente selecciona una rifa.
-2. Escoge la cantidad de boletas.
-3. Se generan números aleatorios por boleta.
-4. Realiza el pago 💳.
-5. La boleta se vincula al usuario.
+## Process Flow
 
-### 4.3. Flujo de Gestión por el Administrador
-1. Login del administrador.
-2. Accede al panel de gestión.
-3. Administra rifas y usuarios.
+### 4.1. Flow of Raffle Creation
+1. Organizer login.
+2. Access the dashboard.
+3. Create a raffle with the required data.
+4. The raffle is visible to the users.
+5. The organizer monitors the sales.
 
-### 4.4. Registro y Acceso
-1. El invitado explora la plataforma.
-2. Se registra para comprar boletas.
-3. Accede al dashboard correspondiente.
+### 4.2. Ticket Purchase Flow
+1. The customer selects a raffle.
+2. Selects the number of ballots.
+3. Random numbers are generated per ticket.
+4. Make the payment 💳.
+5. The ticket is linked to the user.
 
-## 5. Estructura de la Base de Datos
-- *Tabla users* 👤  
+### 4.3. Management flow by the Administrator
+1. Administrator login.
+2. Access to the management panel.
+3. Manage raffles and users.
+
+### 4.4. Registration and Access
+1. The guest explores the platform.
+2. The guest registers to buy tickets.
+3. Accesses the corresponding dashboard.
+
+## Database structure.
+- *Table users* 👤  
   id, name, email, password, role, created_at, updated_at
 
-- *Tabla rifas* 🎟️  
-  id, nombre, descripcion, precio_boleta, cantidad_boletas, organizador_id, fecha_limite
+- *Table raffles* 🎟️  
+  id, name, description, ballot_price, ballot_quantity, organizer_id, deadline_date
 
-- *Tabla boletas* 🛒  
-  id, rifa_id, usuario_id, numero_boleta, created_at
+- *Table ballots* 🛒  
+  id, raffle_id, user_id, ballot_number, created_at
 
-- *Tabla compras* 💳  
-  id, boleta_id, usuario_id, created_at
+- *Purchase table* 💳  
+  id, ballot_id, user_id, created_at
 
-## 6. Requerimientos Técnicos
+## 6. Technical Requirements
 - *Backend*: Laravel
-- *Autenticación*: Jetstream con roles y permisos
+- *Authentication*: Jetstream with roles and permissions
 - *Frontend*: Blade + TailwindCSS
-- *Base de Datos*: MySQL
-- *Pagos*: Integración con pasarelas (PayU/Stripe)
+- *Database*: MySQL
+- *Payments*: Integration with gateways (PayU/Stripe).
 
-## 7. Seguridad y Validaciones
-- *Autenticación segura* con Fortify y 2FA opcional.
-- *Control de acceso* mediante Gates o Policies.
-- Validación de formularios.
-- *Pagos seguros* a través de pasarelas.
+## 7. Security and Validations
+- *Secure authentication* with Fortify and optional 2FA.
+- Access control* with Gates or Policies.
+- Forms validation.
+- *Secure payments* through gateways.
 
 ## 8. UI/UX
-- *Pantalla de inicio*: Rifas activas y botones de registro/login.
+- *Home screen*: Active raffles and registration/login buttons.
 - *Dashboard*:
-  - *Cliente*: Historial de compras.
-  - *Organizador*: Rifas y estadísticas.
-  - *Administrador*: Gestión completa.
-- *Compra de Boletas*: Proceso sencillo y seguro.
+  - *Customer*: Purchase history.
+  - *Organizer*: Raffles and statistics.
+  - Administrator*: Complete management.
+- Ballots purchase: Simple and secure process.
 
-## 9. Casos de Uso
-1. Un organizador crea una rifa con 100 boletas y se venden todas.
-2. Un administrador desactiva una rifa por incumplir las políticas.
-3. Un cliente participa en varias rifas.
-4. Un usuario no registrado se registra y compra boletas.
+## 9. Use Cases
+1. An organizer creates a raffle with 100 ballots and all of them are sold.
+2. An administrator deactivates a raffle for violating policies.
+3. A customer participates in several raffles.
+4. An unregistered user registers and buys tickets.
 
-## 10. Conclusión
-Este proyecto busca desarrollar una plataforma robusta y segura para rifas en línea, permitiendo a los organizadores gestionar rifas y a los usuarios participar fácilmente. La supervisión por parte de los administradores garantiza la transparencia y la correcta operación del sistema.
+## 10. Conclusion
+This project seeks to develop a robust and secure platform for online raffles, allowing organizers to manage raffles and users to participate easily. Oversight by administrators ensures transparency and proper operation of the system.
