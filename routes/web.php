@@ -2,16 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
+use App\Http\Controllers\Admin\UserController;
+
+// Rutas protegidas para el Administrador
+Route::middleware(['auth', 'can:manage-users'])->group(function () {
+    Route::resource('admin/users', UserController::class);
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+// Rutas generales
+Route::get('/', function () {
+    return view('welcome');
 });
