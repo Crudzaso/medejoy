@@ -1,6 +1,6 @@
 --- Branding: ---
 
-Logo: ![image](https://github.com/user-attachments/assets/1755a47e-8fbc-419f-915c-b88a16415db0)
+Logo: ![Dream it, Raffle it, Win it!](https://github.com/user-attachments/assets/1cfbd429-8396-4f9b-972b-6d770734df34)
 
 Slogan: Dream it, Raffle it, Win it!
 
