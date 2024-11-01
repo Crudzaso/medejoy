@@ -31,6 +31,11 @@
             <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
                 <!--begin::Content wrapper-->
                 <div class="d-flex flex-column flex-column-fluid">
+                    <div class="card">
+                        <div class="card-body">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Non cumque iste qui ab unde, ipsam blanditiis corrupti repellendus quos, odit nemo odio mollitia delectus explicabo perspiciatis impedit illo debitis molestiae.
+                        </div>
+                    </div>
                 </div>
                 <!--end::Content wrapper-->
                 <!--begin::Footer-->

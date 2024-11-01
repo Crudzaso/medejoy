@@ -10,8 +10,8 @@
             </div>
             <!--end::Mobile toggle-->
             <!--begin::Logo image-->
-            <a href="index.html">
-                <img alt="Logo" src="assets/media/logos/demo31.svg" class="h-30px" />
+            <a href="#">
+                <img src="{{asset('assets/Dream it, Raffle it, Win it!-Photoroom.png')}}" alt="Logo" class="medejoy_logo" width="70px" height="70px">
             </a>
             <!--end::Logo image-->
         </div>
