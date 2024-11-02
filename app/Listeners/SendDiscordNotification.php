@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Log;
 
 use App\Events\UserCreated;
 use App\Events\UserUpdated;
@@ -11,9 +12,11 @@ use App\Events\UserDeleted;
 use App\Events\UserRestore;
 use App\Events\UserLogin;
 use App\Service\DiscordWebhookService;
+use Illuminate\Support\Facades\Auth;
 
 class SendDiscordNotification
 {
+
     protected $discordWebhook;
 
     // Colores predefinidos para cada tipo de acción
@@ -35,7 +38,7 @@ class SendDiscordNotification
      */
     public function handleUserCreated(UserCreated $event): void
     {
-        $this->sendNotification($event->user, 'creado', auth()->user(), self::COLOR_CREATED);
+        $this->sendNotification($event->user, 'creado', Auth::user(), self::COLOR_CREATED);
     }
 
     /**
@@ -43,7 +46,7 @@ class SendDiscordNotification
      */
     public function handleUserUpdated(UserUpdated $event): void
     {
-        $this->sendNotification($event->user, 'actualizado', auth()->user(), self::COLOR_UPDATED);
+        $this->sendNotification($event->user, 'actualizado', Auth::user(), self::COLOR_UPDATED);
     }
 
     /**
@@ -51,7 +54,7 @@ class SendDiscordNotification
      */
     public function handleUserDeleted(UserDeleted $event): void
     {
-        $this->sendNotification($event->user, 'eliminado', auth()->user(), self::COLOR_DELETED);
+        $this->sendNotification($event->user, 'eliminado', Auth::user(), self::COLOR_DELETED);
     }
 
     /**
@@ -59,7 +62,7 @@ class SendDiscordNotification
      */
     public function handleUserRestore(UserRestore $event): void
     {
-        $this->sendNotification($event->user, 'restaurado', auth()->user(), self::COLOR_RESTORED);
+        $this->sendNotification($event->user, 'restaurado', Auth::user(), self::COLOR_RESTORED);
     }
 
     /**
@@ -67,7 +70,7 @@ class SendDiscordNotification
      */
     public function handleUserLogin(UserLogin $event): void
     {
-        $this->sendNotification($event->user, 'ingreso', auth()->user(), self::COLOR_CREATED);
+        $this->sendNotification($event->user, 'ingreso', Auth::user(), self::COLOR_CREATED);
     }
 
     protected function sendNotification($user, $action, $actor, $color)
@@ -116,7 +119,7 @@ class SendDiscordNotification
             $this->discordWebhook->sendEmbed($embed);
 
         } catch (\Exception $e) {
-            \Illuminate\Support\Facades\Log::error("Error al enviar notificación de Discord: " . $e->getMessage());
+            Log::error("Error al enviar notificación de Discord: " . $e->getMessage());
         }
     }
 }
