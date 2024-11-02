@@ -2,12 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\userRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserCreateFormRequest;
+use App\Http\Requests\UserUpdateFormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+
+use App\Service\DiscordWebhookService;
+
+use App\Events\UserCreated;
+use App\Events\UserUpdated;
+use App\Events\UserDeleted;
+use App\Events\UserRestore;
 
 class UserController extends Controller
 {
+    protected $discordHelper;
+    protected $emailHelper;
+
+    public function __construct()
+    {
+        $this->discordHelper = new DiscordHelper();
+        $this->emailHelper = new EmailHelper();
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -17,7 +36,7 @@ class UserController extends Controller
             $users = User::paginate(10);
             return view('users.index', compact('users'));
         } catch (\Exception $e) {
-            // si ocurre un error, enviar mensaje a Discord o Slack
+            return redirect()->route('usuarios.index')->with('error', 'Error al cargar los usuarios!');
         }
     }
 
@@ -32,14 +51,19 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(userRequest $request)
+    public function store(UserCreateFormRequest $request)
     {
-        try{
-            $user = User::create($request->All());
-            return redirect()->route('usuarios.index')->with("success", "Usuario creado correctamente");
-        }catch(\Exception $e){
-            die ($e->getMessage());
-        }
+        $user = User::create([
+            'names' => $request->names,
+            'lastnames' => $request->lastnames,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'address' => $request->address,
+        ]);
+
+        event(new UserCreated($user));
+
+        return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente!');
     }
 
     /**
@@ -48,10 +72,10 @@ class UserController extends Controller
     public function show(string $id)
     {
         try {
-            $user = User::find($id);
+            $user = User::findOrFail($id);
             return view('users.show', compact('user'));
         } catch (\Exception $e) {
-            // si ocurre un error, enviar mensaje a Discord o Slack
+            return redirect()->route('usuarios.index')->with('error', 'Usuario no encontrado!');
         }
     }
 
@@ -60,34 +84,34 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        try{
-        $user = User::find($id);
-        return view('users.edit', compact('user'));
-        }catch(\Exception $e){
-        //
+        try {
+            $user = User::findOrFail($id);
+            return view('users.edit', compact('user'));
+        } catch (\Exception $e) {
+            return redirect()->route('usuarios.index')->with('error', 'Error al cargar el usuario!');
         }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserUpdateFormRequest $request, string $id)
     {
-        try{
-            $user = User::find($id);
-            if (!$user){
-                return redirect()->back()->with('error', 'user not found');
+        try {
+            $user = User::findOrFail($id);
+            $user->names = $request->input('names');
+            $user->lastnames = $request->input('lastnames');
+            if ($request->input('password')) {
+                $user->password = bcrypt($request->input('password'));
             }
-            $request->validate([
-                'names' => 'required|string',
-                'email' => 'required|email',
-                'lastnames' => 'required|string',
-                'address'=>'required|string'
-            ]);
-            $user->update($request->all());
-            return redirect()->route('usuarios.index')->with("success", "Usuario actualizado correctamente");
-        }catch(\Exception $e){
-        //
+            $user->address = $request->input('address');
+            $user->save();
+
+            event(new UserUpdated($user));
+
+            return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado correctamente!');
+        } catch (\Exception $e) {
+            return redirect()->route('usuarios.index')->with('error', 'Error al actualizar el usuario!');
         }
     }
 
@@ -97,11 +121,40 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         try {
-            $user = User::find($id)->delete();
-            return back()->with('success','Se ha eliminado correctamente');
+            $user = User::findOrFail($id);
 
+            $user->delete();
+
+            event(new UserDeleted($user));
+
+            return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado correctamente!');
         } catch (\Exception $e) {
-            // si ocurre un error, enviar mensaje a Discord o Slack
+            return redirect()->route('usuarios.index')->with('error', 'Error al eliminar el usuario!');
+        }
+    }
+
+    public function trashed()
+    {
+        try {
+            $users = User::onlyTrashed()->paginate(10);
+            return view('users.trashed', compact('users'));
+        } catch (\Exception $e) {
+            return redirect()->route('usuarios.index')->with('error', 'Error al cargar los usuarios eliminados!');
+        }
+    }
+
+    public function restore(string $id)
+    {
+        try {
+            $user = User::withTrashed()->findOrFail($id);
+
+            $user->restore();
+
+            event(new UserRestore($user));
+
+            return redirect()->route('usuarios.index')->with('success', 'Usuario restaurado exitosamente!');
+        } catch (\Exception $e) {
+            return redirect()->route('usuarios.index')->with('error', 'Error al restaurar el usuario!');
         }
     }
 }

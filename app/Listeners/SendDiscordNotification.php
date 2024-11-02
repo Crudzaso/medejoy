@@ -2,8 +2,6 @@
 
 namespace App\Listeners;
 
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
 
 use App\Events\UserCreated;
@@ -119,7 +117,7 @@ class SendDiscordNotification
             $this->discordWebhook->sendEmbed($embed);
 
         } catch (\Exception $e) {
-            Log::error("Error al enviar notificación de Discord: " . $e->getMessage());
+            Log::error("Error al enviar notificación en Discord: " . $e->getMessage());
         }
     }
 }
