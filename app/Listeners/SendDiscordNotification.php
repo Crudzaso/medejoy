@@ -75,11 +75,11 @@ class SendDiscordNotification
 
         try {
             $embed = [
-                'title' => "Suerte paisa - Usuario {$action}",
+                'title' => "Medejoy - Usuario {$action}",
                 'color' => $color,
                 'fields' => [
                     [
-                        'name' => 'Id de user',
+                        'name' => 'ID usuario',
                         'value' => "{$user->id}",
                         'inline' => true,
                     ],
@@ -95,18 +95,18 @@ class SendDiscordNotification
                     ],
                     [
                         'name' => 'Direccion',
-                        'value' => $user->address ?? 'no proporcionado',
+                        'value' => $user->address ?? 'No disponible',
                         'inline' => false,
                     ],
                     [
                         'name' => 'Realizado por',
-                        'value' => "{$actor->names} {$actor->lastnames} con el id {$actor->id}",
+                        'value' => "{$actor->names} {$actor->lastnames} con ID {$actor->id}",
                         'inline' => false,
                     ],
                 ],
                 'footer' => [
                     'text' => implode(" | ", [
-                        'Realizado en Suerte Paisa',
+                        'Realizado en Medejoy',
                         'Notificación realizada el ' . now()->format('d/m/y H:i')
                     ]),
                 ],
@@ -116,7 +116,7 @@ class SendDiscordNotification
             $this->discordWebhook->sendEmbed($embed);
 
         } catch (\Exception $e) {
-            \Log::error("Error al enviar notificación de Discord: " . $e->getMessage());
+            \Illuminate\Support\Facades\Log::error("Error al enviar notificación de Discord: " . $e->getMessage());
         }
     }
 }
