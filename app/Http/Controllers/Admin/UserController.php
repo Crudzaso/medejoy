@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\userRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
-use PHPUnit\Exception;
 
 class UserController extends Controller
 {
@@ -32,10 +32,14 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(userRequest $request)
     {
-        $user = User::create($request->all());
-        return redirect()->route('usuarios.index')->with('success', 'Registro creado correctamente.');
+        try{
+            $user = User::create($request->All());
+            return redirect()->route('usuarios.index')->with("success", "Usuario creado correctamente");
+        }catch(\Exception $e){
+            die ($e->getMessage());
+        }
     }
 
     /**
@@ -56,11 +60,11 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        try {
-            $user = User::find($id);
-            return view('users.edit', compact('user'));
-        } catch (\Exception $e) {
-            //throw $th;
+        try{
+        $user = User::find($id);
+        return view('users.edit', compact('user'));
+        }catch(\Exception $e){
+        //
         }
     }
 
@@ -69,30 +73,23 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        try {
-            $user = User::findOrFail($id);
+        try{
+            $user = User::find($id);
+            if (!$user){
+                return redirect()->back()->with('error', 'user not found');
+            }
+            $request->validate([
+                'names' => 'required|string',
+                'email' => 'required|email',
+                'lastnames' => 'required|string',
+                'address'=>'required|string'
+            ]);
             $user->update($request->all());
-            return redirect()->route('usuarios.index')->with('success', 'Registro actualizado correctamente.');
-        } catch (\Exception $e) {
-            //throw $th;
+            return redirect()->route('usuarios.index')->with("success", "Usuario actualizado correctamente");
+        }catch(\Exception $e){
+        //
         }
     }
-        // TRASHED
-    public function trashed()
-{
-    $users = User::withTrashed()->paginate(10);  // Obtener solo los usuarios archivados
-    return view('users.trashed', compact('users'));  // Retornar la vista con los usuarios archivados
-}
-
-    //UNTRASHED
-public function restore(string $id)
-{
-    $user = User::withTrashed()->findOrFail($id);  // Buscar usuario archivado
-    $user->restore();  // Restaurar el usuario
-
-    return back()->with('success', 'Usuario restaurado correctamente.');
-}
-
 
     /**
      * Remove the specified resource from storage.

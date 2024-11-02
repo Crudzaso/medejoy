@@ -39,6 +39,7 @@ class ComposerStaticInit589cc0f65c3aaa7d4e9024d545bc1974
         'ce9671a430e4846b44e1c68c7611f9f5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'a1cfe24d14977df6878b9bf804af2d1c' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Phpunit/Autoload.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
+        'bcbfbe8bd6c16a4857badc18a4efaf00' => __DIR__ . '/../..' . '/app/Helpers/discordHelper.php',
     );
 
     public static $prefixLengthsPsr4 = array (
