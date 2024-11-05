@@ -18,14 +18,6 @@ use App\Events\UserRestore;
 
 class UserController extends Controller
 {
-    protected $discordHelper;
-    protected $emailHelper;
-
-    public function __construct()
-    {
-        $this->discordHelper = new DiscordHelper();
-        $this->emailHelper = new EmailHelper();
-    }
 
     /**
      * Display a listing of the resource.
@@ -36,7 +28,7 @@ class UserController extends Controller
             $users = User::paginate(10);
             return view('users.index', compact('users'));
         } catch (\Exception $e) {
-            return redirect()->route('usuarios.index')->with('error', 'Error al cargar los usuarios!');
+            return redirect()->route('usuarios.index')->with('error', 'Error al cargar los usuarios.');
         }
     }
 
@@ -63,7 +55,7 @@ class UserController extends Controller
 
         event(new UserCreated($user));
 
-        return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente!');
+        return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente.');
     }
 
     /**
@@ -75,7 +67,7 @@ class UserController extends Controller
             $user = User::findOrFail($id);
             return view('users.show', compact('user'));
         } catch (\Exception $e) {
-            return redirect()->route('usuarios.index')->with('error', 'Usuario no encontrado!');
+            return redirect()->route('usuarios.index')->with('error', 'Usuario no encontrado.');
         }
     }
 
@@ -88,7 +80,7 @@ class UserController extends Controller
             $user = User::findOrFail($id);
             return view('users.edit', compact('user'));
         } catch (\Exception $e) {
-            return redirect()->route('usuarios.index')->with('error', 'Error al cargar el usuario!');
+            return redirect()->route('usuarios.index')->with('error', 'Error al cargar el usuario.');
         }
     }
 
@@ -109,9 +101,9 @@ class UserController extends Controller
 
             event(new UserUpdated($user));
 
-            return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado correctamente!');
+            return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado correctamente.');
         } catch (\Exception $e) {
-            return redirect()->route('usuarios.index')->with('error', 'Error al actualizar el usuario!');
+            return redirect()->route('usuarios.index')->with('error', 'Error al actualizar el usuario.');
         }
     }
 
@@ -127,9 +119,9 @@ class UserController extends Controller
 
             event(new UserDeleted($user));
 
-            return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado correctamente!');
+            return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado correctamente.');
         } catch (\Exception $e) {
-            return redirect()->route('usuarios.index')->with('error', 'Error al eliminar el usuario!');
+            return redirect()->route('usuarios.index')->with('error', 'Error al eliminar el usuario.');
         }
     }
 
@@ -139,7 +131,7 @@ class UserController extends Controller
             $users = User::onlyTrashed()->paginate(10);
             return view('users.trashed', compact('users'));
         } catch (\Exception $e) {
-            return redirect()->route('usuarios.index')->with('error', 'Error al cargar los usuarios eliminados!');
+            return redirect()->route('usuarios.index')->with('error', 'Error al cargar los usuarios eliminados.');
         }
     }
 
@@ -152,9 +144,9 @@ class UserController extends Controller
 
             event(new UserRestore($user));
 
-            return redirect()->route('usuarios.index')->with('success', 'Usuario restaurado exitosamente!');
+            return redirect()->route('usuarios.index')->with('success', 'Usuario restaurado exitosamente.');
         } catch (\Exception $e) {
-            return redirect()->route('usuarios.index')->with('error', 'Error al restaurar el usuario!');
+            return redirect()->route('usuarios.index')->with('error', 'Error al restaurar el usuario.');
         }
     }
 }

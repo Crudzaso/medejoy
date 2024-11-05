@@ -76,32 +76,33 @@ class SendDiscordNotification
 
         try {
             $embed = [
-                'title' => "Medejoy - Usuario {$action}",
+                'title' => "Medejoy 🔞💸",
+                'description' => "El usuario se ha {$action}",
                 'color' => $color,
                 'fields' => [
                     [
-                        'name' => 'ID usuario',
+                        'name' => '🔐 ID usuario',
                         'value' => "{$user->id}",
                         'inline' => true,
                     ],
                     [
-                        'name' => 'Nombre Completo',
+                        'name' => '👤 Nombre Completo',
                         'value' => "{$user->names} {$user->lastnames}",
                         'inline' => true,
                     ],
                     [
-                        'name' => 'Correo Electronico',
+                        'name' => '📧 Correo Electronico',
                         'value' => $user->email,
                         'inline' => false,
                     ],
                     [
-                        'name' => 'Direccion',
+                        'name' => '🌐 Direccion',
                         'value' => $user->address ?? 'No disponible',
                         'inline' => false,
                     ],
                     [
-                        'name' => 'Realizado por',
-                        'value' => "{$actor->names} {$actor->lastnames} con ID {$actor->id}",
+                        'name' => '🛠️ Realizado por:',
+                        'value' => "{$actor->names} {$actor->lastnames} con ID: {$actor->id}",
                         'inline' => false,
                     ],
                 ],

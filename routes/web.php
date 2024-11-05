@@ -2,8 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\UserController as ControllersUserController;
+use App\Http\Controllers\UserController;
 
 // Rutas protegidas para el Administrador
 Route::middleware(['auth', 'can:manage-users'])->group(function () {
@@ -15,13 +14,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('usuarios', [UserController::class, 'index'])->name('usuarios.index');
-Route::get('usuarios/{id}', [UserController::class, 'show'])->name('usuarios.show');
-Route::delete('usuarios/{id}', [UserController::class, 'destroy'])->name('usuarios.destroy');
-Route::get('usuarios/editar/{id}', [UserController::class,  'edit'])->name('usuarios.edit');
-Route::put('usuarios/{id}', [UserController::class, 'update'])->name('usuarios.update');
-Route::get('user/create', [UserController::class, 'create'])->name('usuarios.create');
-Route::post('user/store', [UserController::class, 'store'])->name('usuarios.store');
+Route::resource('usuarios', UserController::class)->except(['show']);
+Route::get('usuarios/{id}', [UserController::class, 'show'])->where('id', '[0-9]+')->name('usuarios.show');
+Route::get('usuarios/eliminados', [UserController::class, 'trashed'])->name('usuarios.trashed');
+Route::post('usuarios/{id}/restaurar', [UserController::class, 'restore'])->name('usuarios.restore');
+Route::get('usuarios/crear', [UserController::class, 'create'])->name('usuarios.create');
+Route::post('usuarios', [UserController::class, 'store'])->name('usuarios.store');
 
 Route::middleware([
     'auth:sanctum',
