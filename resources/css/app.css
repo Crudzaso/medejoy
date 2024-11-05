@@ -5,3 +5,16 @@
 [x-cloak] {
     display: none;
 }
+
+
+.focus\:border-green-500:focus {
+    border-color: #64d465; /* Ajusta el color del borde al enfocar */
+}
+
+/* Aquí puedes agregar estilos globales */
+body {
+    font-family: 'Figtree', sans-serif;
+}
+
+/* Puedes importar custom.css si lo deseas, pero no es necesario */
+@import '/public/css/custom.css'; /* Si decides usarlo, de lo contrario puedes omitir esta línea */

@@ -14,6 +14,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+use App\Http\Controllers\Auth\SocialiteController;
+
+Route::get('/auth/google', [SocialiteController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [SocialiteController::class, 'handleGoogleCallback']);
+Route::get('/auth/discord', [SocialiteController::class, 'redirectToDiscord'])->name('auth.discord');
+Route::get('/auth/discord/callback', [SocialiteController::class, 'handleDiscordCallback']);
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -23,3 +29,4 @@ Route::middleware([
         return view('main');
     })->name('main');
 });
+
