@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Socialite\Facades\Socialite; // Importar Socialite
 use SocialiteProviders\Discord\DiscordExtendSocialite; // Importar DiscordExtendSocialite
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,8 +27,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Event::listen(function (\SocialiteProviders\Manager\SocialiteWasCalled $event) {
-            $event->extendSocialite('discord', \SocialiteProviders\Discord\Provider::class);
-        });
+        if($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
     }
 }
