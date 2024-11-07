@@ -12,6 +12,7 @@ return array(
     'App\\Actions\\Fortify\\UpdateUserPassword' => $baseDir . '/app/Actions/Fortify/UpdateUserPassword.php',
     'App\\Actions\\Fortify\\UpdateUserProfileInformation' => $baseDir . '/app/Actions/Fortify/UpdateUserProfileInformation.php',
     'App\\Actions\\Jetstream\\DeleteUser' => $baseDir . '/app/Actions/Jetstream/DeleteUser.php',
+    'App\\Console\\Commands\\CreateHelper' => $baseDir . '/app/Console/Commands/CreateHelper.php',
     'App\\Events\\UserCreated' => $baseDir . '/app/Events/UserCreated.php',
     'App\\Events\\UserDeleted' => $baseDir . '/app/Events/UserDeleted.php',
     'App\\Events\\UserLogin' => $baseDir . '/app/Events/UserLogin.php',

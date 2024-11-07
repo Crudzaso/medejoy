@@ -562,6 +562,7 @@ class ComposerStaticInit589cc0f65c3aaa7d4e9024d545bc1974
         'App\\Actions\\Fortify\\UpdateUserPassword' => __DIR__ . '/../..' . '/app/Actions/Fortify/UpdateUserPassword.php',
         'App\\Actions\\Fortify\\UpdateUserProfileInformation' => __DIR__ . '/../..' . '/app/Actions/Fortify/UpdateUserProfileInformation.php',
         'App\\Actions\\Jetstream\\DeleteUser' => __DIR__ . '/../..' . '/app/Actions/Jetstream/DeleteUser.php',
+        'App\\Console\\Commands\\CreateHelper' => __DIR__ . '/../..' . '/app/Console/Commands/CreateHelper.php',
         'App\\Events\\UserCreated' => __DIR__ . '/../..' . '/app/Events/UserCreated.php',
         'App\\Events\\UserDeleted' => __DIR__ . '/../..' . '/app/Events/UserDeleted.php',
         'App\\Events\\UserLogin' => __DIR__ . '/../..' . '/app/Events/UserLogin.php',

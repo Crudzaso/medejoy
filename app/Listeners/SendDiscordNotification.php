@@ -11,6 +11,8 @@ use App\Events\UserRestore;
 use App\Events\UserLogin;
 use App\Service\DiscordWebhookService;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Login;
+use Illuminate\Auth\Events\Registered;
 
 class SendDiscordNotification
 {
@@ -66,9 +68,11 @@ class SendDiscordNotification
     /**
      * Handle the event of restore.
      */
-    public function handleUserLogin(UserLogin $event): void
+    public function handleUserLogin(Login $event): void
     {
-        $this->sendNotification($event->user, 'ingreso', Auth::user(), self::COLOR_CREATED);
+        $actor = auth()->user() ?: $event->user;
+        $authMethod = session('auth_method', 'Usuario');
+        $this->sendNotification($event->user, 'ingreso', $actor, $authMethod);
     }
 
     protected function sendNotification($user, $action, $actor, $color)
@@ -108,8 +112,8 @@ class SendDiscordNotification
                 ],
                 'footer' => [
                     'text' => implode(" | ", [
-                        'Realizado en Medejoy',
-                        'Notificación realizada el ' . now()->format('d/m/y H:i')
+                        'Realizado por Medejoy',
+                        '|' . now()->format('d/m/y H:i')
                     ]),
                 ],
                 'timestamp' => now()->toIso8601String(),
@@ -118,7 +122,7 @@ class SendDiscordNotification
             $this->discordWebhook->sendEmbed($embed);
 
         } catch (\Exception $e) {
-            Log::error("Error al enviar notificación en Discord: " . $e->getMessage());
+            Log::error("Error al enviar notificación en Discord!: " . $e->getMessage());
         }
     }
 }
