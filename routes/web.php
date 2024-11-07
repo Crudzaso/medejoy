@@ -11,7 +11,7 @@ Route::middleware(['auth', 'can:manage-users'])->group(function () {
 
 // Rutas generales
 Route::get('/', function () {
-    return view('welcome');
+    return view('main');
 });
 
 use App\Http\Controllers\Auth\SocialiteController;
