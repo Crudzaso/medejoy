@@ -1,0 +1,82 @@
+/* public/css/app.css */
+
+/* Fondo principal */
+body {
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+}
+
+/* Contenedor de la sección 'Sobre Nosotros' */
+.about-container {
+    padding: 2rem;
+    background-color: #333333;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    margin-top: 2rem;
+}
+
+/* Títulos */
+h1, h2 {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-top: 1.5rem;
+}
+
+/* Texto principal */
+p.lead {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+/* Tarjetas de cada miembro del equipo */
+.team-member .card {
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover en la tarjeta */
+.team-member .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos de las imágenes */
+.team-member img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+/* Texto de cada miembro */
+.card-title {
+    color: #333333;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card-text {
+    color: #333333;
+    font-size: 1rem;
+}
+
+/* Espaciado en dispositivos pequeños */
+@media (max-width: 768px) {
+    .about-container {
+        padding: 1.5rem;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+}

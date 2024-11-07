@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\AboutController;
 
 // Rutas protegidas para el Administrador
 Route::middleware(['auth', 'can:manage-users'])->group(function () {
@@ -13,6 +14,10 @@ Route::middleware(['auth', 'can:manage-users'])->group(function () {
 Route::get('/', function () {
     return view('main');
 });
+
+// routes/web.php
+Route::get('about-us', [AboutController::class, 'index'])->name('about');
+
 
 use App\Http\Controllers\Auth\SocialiteController;
 
@@ -30,3 +35,13 @@ Route::get('/auth/discord/callback', [SocialiteController::class, 'handleDiscord
 //    })->name('main');
 //});
 
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
