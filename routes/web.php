@@ -36,7 +36,6 @@ Route::get('/auth/discord/callback', [SocialiteController::class, 'handleDiscord
 //    })->name('main');
 //});
 
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
