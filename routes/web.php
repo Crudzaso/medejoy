@@ -15,8 +15,8 @@ Route::get('/', function () {
     return view('main');
 });
 
-// routes/web.php
-Route::get('about-us', [AboutController::class, 'index'])->name('about');
+// Ruta Sobre Nosotros
+Route::get('sobre-nosotros', [AboutController::class, 'index'])->name('about');
 
 
 use App\Http\Controllers\Auth\SocialiteController;
@@ -25,6 +25,7 @@ Route::get('/auth/google', [SocialiteController::class, 'redirectToGoogle'])->na
 Route::get('/auth/google/callback', [SocialiteController::class, 'handleGoogleCallback']);
 Route::get('/auth/discord', [SocialiteController::class, 'redirectToDiscord'])->name('auth.discord');
 Route::get('/auth/discord/callback', [SocialiteController::class, 'handleDiscordCallback']);
+
 //Route::middleware([
 //    'auth:sanctum',
 //    config('jetstream.auth_session'),

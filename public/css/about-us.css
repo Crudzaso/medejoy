@@ -1,8 +1,5 @@
-/* public/css/app.css */
-
 /* Fondo principal */
-body {/*
-    background-color: #ffffff; */
+body {
     background-image: url("https://wallpapers.com/images/featured/4k-blanco-i308ljad82204626.jpg");
     background-size: cover;
     font-family: 'Nunito', Arial, sans-serif;
@@ -148,7 +145,6 @@ p.lead {
 }
 
 .contact:hover {
-    color: #ffffff;
     transform: scale(1.1);
     outline: 2px solid #70bdca;
     box-shadow: 4px 5px 17px -4px #268391;
@@ -169,6 +165,10 @@ p.lead {
 
 .contact:hover::before {
     width: 250%;
+}
+
+.btn2 {
+    text-decoration: none;
 }
 
 /* Espaciado en dispositivos pequeños */
