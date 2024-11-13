@@ -29,4 +29,3 @@ Route::get('/auth/discord/callback', [SocialiteController::class, 'handleDiscord
 //        return view('main');
 //    })->name('main');
 //});
-

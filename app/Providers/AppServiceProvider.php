@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use http\Header;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Socialite\Facades\Socialite; // Importar Socialite
@@ -30,5 +32,8 @@ class AppServiceProvider extends ServiceProvider
         if($this->app->environment('production')) {
             URL::forceScheme('https');
         }
+        Blade::component('layouts.partials.header', 'header');
+        Blade::component('layouts.partials.sidebar', 'sidebar');
+        Blade::component('layouts.partials.profile', 'profile');
     }
 }
