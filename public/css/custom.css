@@ -1,0 +1,24 @@
+/* Estilos personalizados */
+
+body {
+    background-color: #f9fafb; /* Color de fondo de la página */
+}
+
+/* Estilos para los botones de iniciar sesión */
+.btn-primary {
+    background-color: #64d465; /* Color de fondo verde */
+    border-color: #64d465; /* Color del borde */
+    color: white; /* Color del texto */
+}
+
+/* Estilo para el foco de los inputs */
+input:focus {
+    border-color: #64d465; /* Color del borde al enfocar */
+    box-shadow: 0 0 0 2px rgba(100, 212, 101, 0.5); /* Sombra de enfoque */
+}
+
+/* Color del checkbox */
+input[type="checkbox"]:checked {
+    background-color: #64d465; /* Color de fondo cuando se selecciona */
+    border-color: #64d465; /* Color del borde cuando se selecciona */
+}
