@@ -32,7 +32,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/main', function () {
-    return view('main');
+        return view('main');
     })->name('main');
 });
 

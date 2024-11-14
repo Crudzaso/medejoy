@@ -19,6 +19,7 @@ return array(
     'App\\Contracts\\PathsRepository' => $vendorDir . '/laravel/pint/app/Contracts/PathsRepository.php',
     'App\\Factories\\ConfigurationFactory' => $vendorDir . '/laravel/pint/app/Factories/ConfigurationFactory.php',
     'App\\Factories\\ConfigurationResolverFactory' => $vendorDir . '/laravel/pint/app/Factories/ConfigurationResolverFactory.php',
+    'App\\Http\\Controllers\\AboutController' => $baseDir . '/app/Http/Controllers/AboutController.php',
     'App\\Http\\Controllers\\Auth\\SocialiteController' => $baseDir . '/app/Http/Controllers/Auth/SocialiteController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Kernel' => $vendorDir . '/laravel/pint/app/Kernel.php',
