@@ -102,7 +102,6 @@ public function restore(string $id)
         try {
             $user = User::find($id)->delete();
             return back()->with('success','Se ha eliminado correctamente');
-
         } catch (\Exception $e) {
             // si ocurre un error, enviar mensaje a Discord o Slack
         }
