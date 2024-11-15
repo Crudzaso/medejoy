@@ -171,6 +171,10 @@ p.lead {
     text-decoration: none;
 }
 
+.btn2:hover{
+    color: #ffffff;
+}
+
 /* Espaciado en dispositivos pequeños */
 @media (max-width: 768px) {
     .about-container {
