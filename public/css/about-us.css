@@ -54,6 +54,7 @@ h1, h2 {
 .sub-title {
     text-align: center;
     color: #ffffff;
+}
 
 /* Texto principal */
 p.lead {
@@ -167,6 +168,10 @@ p.lead {
 
 .btn2 {
     text-decoration: none;
+}
+
+.btn2:hover{
+    color: #ffffff;
 }
 
 /* Espaciado en dispositivos pequeños */
