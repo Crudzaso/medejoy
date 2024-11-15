@@ -15,6 +15,13 @@ Route::get('/', function () {
     return view('main');
 });
 
+Route::resource('usuarios', UserController::class)->except(['show']);
+Route::get('usuarios/{id}', [UserController::class, 'show'])->where('id', '[0-9]+')->name('usuarios.show');
+Route::get('usuarios/eliminados', [UserController::class, 'trashed'])->name('usuarios.trashed');
+Route::post('usuarios/{id}/restaurar', [UserController::class, 'restore'])->name('usuarios.restore');
+Route::get('usuarios/crear', [UserController::class, 'create'])->name('usuarios.create');
+Route::post('usuarios', [UserController::class, 'store'])->name('usuarios.store');
+
 // Ruta Sobre Nosotros
 Route::get('sobre-nosotros', [AboutController::class, 'index'])->name('about');
 

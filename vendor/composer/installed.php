@@ -3,6 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
+        'reference' => 'ad0474ff7b7da1077e94530857332fe10b0c8304',
         'reference' => '0dffc87949e28444708f85a97655dd084945e521',
         'reference' => '8a6ec28273aa37c71535460e9bbd8f0b80b301d0',
         'reference' => '0dffc87949e28444708f85a97655dd084945e521',
@@ -453,6 +454,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
+            'reference' => 'ad0474ff7b7da1077e94530857332fe10b0c8304',
             'reference' => '0dffc87949e28444708f85a97655dd084945e521',
             'reference' => '8a6ec28273aa37c71535460e9bbd8f0b80b301d0',
             'reference' => '0dffc87949e28444708f85a97655dd084945e521',
