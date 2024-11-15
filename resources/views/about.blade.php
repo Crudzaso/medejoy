@@ -26,7 +26,7 @@
     <div class="row mt-5">
         <div class="col-md-4 team-member">
             <div class="card shadow-sm">
-                <img src="https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/2d20b705-9dac-4f1d-9a01-54ea7557aa4f/6c413449-da83-4063-a7b8-b7bfbb902612.png" class="card-img-top" alt="Brayan Conde">
+                <img src="{{ asset ('icons/riwifave.png') }}" alt="Brayan Conde">
                 <div class="card-body">
                     <h5 class="card-title">Brayan Conde</h5>
                     <p class="card-text">
@@ -38,7 +38,7 @@
 
         <div class="col-md-4 team-member">
             <div class="card shadow-sm">
-                <img src="https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/2d20b705-9dac-4f1d-9a01-54ea7557aa4f/6c413449-da83-4063-a7b8-b7bfbb902612.png" class="card-img-top" alt="Jeronimo Cruz">
+                <img src="{{ asset ('icons/riwifave.png') }}" class="card-img-top" alt="Jeronimo Cruz">
                 <div class="card-body">
                     <h5 class="card-title">Jerónimo Cruz</h5>
                     <p class="card-text">
@@ -50,7 +50,7 @@
 
         <div class="col-md-4 team-member">
             <div class="card shadow-sm">
-                <img src="https://easy-peasy.ai/cdn-cgi/image/quality=80,format=auto,width=700/https://fdczvxmwwjwpwbeeqcth.supabase.co/storage/v1/object/public/images/2d20b705-9dac-4f1d-9a01-54ea7557aa4f/6c413449-da83-4063-a7b8-b7bfbb902612.png" class="card-img-top" alt="Santiago Londoño">
+                <img src="{{ asset ('icons/riwifave.png') }}" class="card-img-top" alt="Santiago Londoño">
                 <div class="card-body">
                     <h5 class="card-title">Santiago Londoño</h5>
                     <p class="card-text">
