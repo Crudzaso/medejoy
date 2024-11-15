@@ -11,10 +11,10 @@
 @else
     <div style="flex-direction: row; display: flex; justify-content: space-evenly; width: 300px; margin-right: 250px;  gap: 10px; padding-right: 20px;">
         <form action="{{ route('login') }}" method="GET">
-            <button type="submit" class="btn btn-primary" style="font-size: small; width: 150px">Iniciar sesión</button>
+            <button type="submit" class="btn btn-dark" style="font-size: small; width: 150px">Iniciar sesión</button>
         </form>
         <form action="{{ route('register') }}" method="GET">
-            <button type="submit" class="btn btn-primary" style="font-size: small">Registrarse</button>
+            <button type="submit" class="btn btn-dark" style="font-size: small">Registrarse</button>
         </form>
     </div>
 @endif
