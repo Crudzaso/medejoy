@@ -70,9 +70,7 @@ class SendDiscordNotification
      */
     public function handleUserLogin(Login $event): void
     {
-        $actor = auth()->user() ?: $event->user;
-        $authMethod = session('auth_method', 'Usuario');
-        $this->sendNotification($event->user, 'ingreso', $actor, $authMethod);
+        $this->sendNotification($event->user, 'ingreso', Auth::user(), self::COLOR_CREATED);
     }
 
     protected function sendNotification($user, $action, $actor, $color)
@@ -81,7 +79,7 @@ class SendDiscordNotification
         try {
             $embed = [
                 'title' => "Medejoy 🔞💸",
-                'description' => "El usuario se ha {$action}",
+                'description' => "El usuario se ha {$action}!",
                 'color' => $color,
                 'fields' => [
                     [

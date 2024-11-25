@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
+
 
 class SocialiteController extends Controller
 {
@@ -20,7 +22,7 @@ class SocialiteController extends Controller
     public function handleGoogleCallback()
     {
         try {
-            $googleUser = Socialite::driver('google')->stateless()->user();
+            $googleUser = Socialite::driver('google')->user();
 
             // Buscar o crear el usuario en la base de datos
             $user = User::firstOrCreate(
@@ -40,7 +42,7 @@ class SocialiteController extends Controller
             return redirect()->intended('/home'); // Redirigir a la página de inicio o donde prefieras
 
         } catch (\Exception $e) {
-            \Log::error('Google login error:', ['message' => $e->getMessage()]);
+            Log::error('Google login error:', ['message' => $e->getMessage()]);
             return redirect('/login')->withErrors('Error al iniciar sesión con Google');
         }
     }
@@ -50,13 +52,13 @@ class SocialiteController extends Controller
     {
         return Socialite::driver('discord')->redirect();
     }
-    
+
 
     // Manejar el callback de Discord
     public function handleDiscordCallback()
     {
         try {
-            $discordUser = Socialite::driver('discord')->stateless()->user();
+            $discordUser = Socialite::driver('discord')->user();
 
             // Buscar o crear el usuario en la base de datos
             $user = User::firstOrCreate(
@@ -76,7 +78,7 @@ class SocialiteController extends Controller
             return redirect()->intended('/home'); // Redirigir a la página de inicio o donde prefieras
 
         } catch (\Exception $e) {
-            \Log::error('Discord login error:', ['message' => $e->getMessage()]);
+            Log::error('Discord login error:', ['message' => $e->getMessage()]);
             return redirect('/login')->withErrors('Error al iniciar sesión con Discord');
         }
     }
