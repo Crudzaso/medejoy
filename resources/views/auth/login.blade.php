@@ -44,5 +44,11 @@
                 </x-button>
             </div>
         </form>
+
+        <div class="mt-4">
+            <a href="{{ route('github.login') }}">
+                <img src="{{ asset('images/github-login.png') }}" alt="GitHub Login" class="h-8">
+            </a>
+        </div>
     </x-authentication-card>
 </x-guest-layout>
