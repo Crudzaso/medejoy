@@ -50,4 +50,11 @@ return [
     'client_secret' => env('DISCORD_CLIENT_SECRET'),
     'redirect' => env('DISCORD_REDIRECT_URI'),
 ],
+ 'github' => [
+        'client_id' => env('GITHUB_CLIENT_ID'),
+        'client_secret' => env('GITHUB_CLIENT_SECRET'),
+        'redirect' => env('APP_ENV') === 'production'
+            ? 'https://medejoy.crudzaso.com/auth/callback/github'
+            : 'http://localhost:8000/auth/callback/github',
+    ],
 ];
