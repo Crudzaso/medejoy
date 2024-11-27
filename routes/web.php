@@ -4,10 +4,11 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Auth\SocialiteController;
 
 // Rutas protegidas para el Administrador
 Route::middleware(['auth', 'can:manage-users'])->group(function () {
-    Route::resource('admin/users', UserController::class);
+    Route::resource('admin/users',[UserController::class]);
 });
 
 // Rutas generales
@@ -26,7 +27,7 @@ Route::post('usuarios', [UserController::class, 'store'])->name('usuarios.store'
 Route::get('sobre-nosotros', [AboutController::class, 'index'])->name('about');
 
 
-use App\Http\Controllers\Auth\SocialiteController;
+
 
 Route::get('/auth/google', [SocialiteController::class, 'redirectToGoogle'])->name('auth.google');
 Route::get('/auth/google/callback', [SocialiteController::class, 'handleGoogleCallback']);
@@ -52,3 +53,6 @@ Route::middleware([
 //         return view('dashboard');
 //     })->name('dashboard');
 // });
+
+Route::get('/auth/redirect/github', [SocialiteController::class, 'redirectToGitHub'])->name('github.login');
+Route::get('/auth/callback/github', [SocialiteController::class, 'handleGitHubCallback'])->name('github.callback');

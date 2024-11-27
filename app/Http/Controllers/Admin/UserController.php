@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,6 +15,7 @@ use App\Events\UserCreated;
 use App\Events\UserUpdated;
 use App\Events\UserDeleted;
 use App\Events\UserRestore;
+use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
