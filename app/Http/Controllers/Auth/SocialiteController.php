@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
 
@@ -78,6 +79,49 @@ class SocialiteController extends Controller
         } catch (\Exception $e) {
             \Log::error('Discord login error:', ['message' => $e->getMessage()]);
             return redirect('/login')->withErrors('Error al iniciar sesión con Discord');
+        }
+    }
+
+    public function redirectToGitHub()
+    {
+        return Socialite::driver('github')->redirect();
+    }
+
+    public function handleGitHubCallback()
+    {
+        try {
+            $githubUser = Socialite::driver('github')->user();
+
+            // Verifica los datos recibidos
+            Log::info('Usuario de GitHub: ', [
+                'id' => $githubUser->id,
+                'nickname' => $githubUser->nickname,
+                'name' => $githubUser->name,
+                'email' => $githubUser->email,
+                'avatar' => $githubUser->avatar,
+            ]);
+
+            // Encuentra o crea un usuario
+            $user = User::firstOrCreate([
+                'email' => $githubUser->email,
+            ], [
+                'name' => $githubUser->name ?: 'Nombre por defecto',
+                'github_id' => $githubUser->id,
+                'lastname' => 'Apellidos por defecto',
+                'password' => bcrypt('random_password'),
+                'phone_number' => 'Número por defecto',
+                'document' => '00000000',
+                'document_type' => 'CC',
+            ]);
+
+            // Inicia sesión al usuario
+            Auth::login($user);
+
+            return redirect('/dashboard');
+        } catch (\Exception $e) {
+            // Registra el error
+            Log::error('Error en la autenticación de GitHub: ' . $e->getMessage());
+            return redirect('/')->with('error', 'No se pudo iniciar sesión con GitHub.');
         }
     }
 }
