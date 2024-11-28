@@ -35,6 +35,6 @@ class DiscordWebhookService
         ];
 
         $context  = stream_context_create($options);
-        file_get_contents($this->webhookUrl, false, $context);
+        // file_get_contents($this->webhookUrl, false, $context);
     }
 }
