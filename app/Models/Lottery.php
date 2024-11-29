@@ -6,5 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Lottery extends Model
 {
-    //
+
+    use HasFactory;
+
+    
+    protected $fillable = [
+        'name',
+        'description',
+        'image'
+    ];
+
+    public function raffles()
+    {
+        return $this->hasMany(Raffle::class);
+    }
+
+
 }
