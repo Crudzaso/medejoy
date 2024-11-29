@@ -25,7 +25,7 @@ class Raffle extends Model
         'draw_date',
     ];
 
-    public function Raffle(){
+    public function Lottery(){
         return $this->belongsTo(Lottery::class);
     }
 }
