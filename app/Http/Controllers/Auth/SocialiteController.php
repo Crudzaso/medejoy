@@ -21,28 +21,37 @@ class SocialiteController extends Controller
     public function handleGoogleCallback()
     {
         try {
-            $googleUser = Socialite::driver('google')->stateless()->user();
+            $googleUser = Socialite::driver('google')->user();
+
+            Log::info('Usuario de Google obtenido', [
+                'email' => $googleUser->getEmail(),
+                'name' => $googleUser->getName(),
+            ]);
 
             // Buscar o crear el usuario en la base de datos
-            $user = User::firstOrCreate(
+            $authUser = User::firstOrCreate(
                 ['email' => $googleUser->getEmail()],
                 [
                     'name' => $googleUser->getName(),
-                    'email' => $googleUser->getEmail(),
+                    
                     'google_id' => $googleUser->getId(),
                     'avatar' => $googleUser->getAvatar(),
                     'password' => bcrypt(Str::random(16)), // Generar una contraseña ficticia
                 ]
             );
 
-            // Iniciar sesión
-            Auth::login($user);
+             Log::info('Usuario autenticado o creado', [
+                'authUser' => $authUser,
+            ]);
 
-            return redirect()->intended('/home'); // Redirigir a la página de inicio o donde prefieras
+            // Iniciar sesión
+            Auth::login($authUser, true);
+
+            return redirect()->route('dashboard'); // Redirigir a la página de inicio o donde prefieras
 
         } catch (\Exception $e) {
-            \Log::error('Google login error:', ['message' => $e->getMessage()]);
-            return redirect('/login')->withErrors('Error al iniciar sesión con Google');
+            Log::error('Google login error:', ['message' => $e->getMessage()]);
+            return redirect('/login')->with('Error al iniciar sesión con Google');
         }
     }
 
