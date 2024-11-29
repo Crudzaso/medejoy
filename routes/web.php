@@ -39,8 +39,8 @@ Route::get('sobre-nosotros', [AboutController::class, 'index'])->name('about');
 
 
 
-Route::get('/auth/google', [SocialiteController::class, 'redirectToGoogle'])->name('auth.google');
-Route::get('/auth/google/callback', [SocialiteController::class, 'handleGoogleCallback']);
+Route::get('/auth/redirect/google', [SocialiteController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('/auth/google/callback', [SocialiteController::class, 'handleGoogleCallback'])->name('google.callback');
 // Route::get('/auth/discord', [SocialiteController::class, 'redirectToDiscord'])->name('auth.discord');
 // Route::get('/auth/discord/callback', [SocialiteController::class, 'handleDiscordCallback']);
 
