@@ -39,11 +39,14 @@ return [
         'webhook_url' => env('DISCORD_WEBHOOK_URL'),
     ],
 
-'google' => [
-    'client_id' => env('GOOGLE_CLIENT_ID'),
-    'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-    'redirect' => env('GOOGLE_REDIRECT'),
-],
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('APP_ENV') === 'production'
+            ? 'https://medejoy.crudzaso.com/auth/google/callback'
+            : 'http://localhost:8000/auth/google/callback',
+        'scope' => ['email', 'profile'],
+    ],
 
 'discord' => [
     'client_id' => env('DISCORD_CLIENT_ID'),
