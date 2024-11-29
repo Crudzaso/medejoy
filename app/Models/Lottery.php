@@ -21,5 +21,10 @@ class Lottery extends Model
         return $this->hasMany(Raffle::class);
     }
 
+    public function draws(){
+        return $this->hasMany(Draws::class);
+    }
+    
+
 
 }
