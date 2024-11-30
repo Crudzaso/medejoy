@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         // $this->call(LotterySeeder::class);
         // Raffle::factory(2)->create();
-        Draws::factory(2)->create();
+        // Draws::factory(2)->create();
 
         // User::factory()->create([
         //     'name' => 'Test User',
