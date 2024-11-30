@@ -3,7 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Model\Raffle;
+use App\Models\Raffle;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Draws extends Model
 {
