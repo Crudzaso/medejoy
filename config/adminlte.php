@@ -320,11 +320,28 @@ return [
             'url' => 'admin/blog',
             'can' => 'manage-blog',
         ],
+       [
+            'text' => 'Rifas',
+            'submenu' => [
+                [
+                    'text' => 'Crear rifa',
+                    'url'=> 'admin/crear-rifa'
+                ],
+                [
+                    'text' => 'Listar rifas',
+                    'url'=> 'admin/rifas'
+                ],
+            ],
+        ],
         [
-            'text' => 'pages',
-            'url' => 'admin/pages',
+            'text' => 'Estadisticas',
+            'submenu' => [
+                [
+                    'text' => 'Boletos vendidos',
+                    'url' => ''
+                ],
+            ],
             'icon' => 'far fa-fw fa-file',
-            'label' => 4,
             'label_color' => 'success',
         ],
         ['header' => 'account_settings'],
