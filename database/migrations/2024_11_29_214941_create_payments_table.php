@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('ticket_id')->constrained('tickets')->onDelete('set null'); 
-            $table->foreignId('user_id')->constrained('users')->onDelete('set null'); 
+            $table->foreignId('ticket_id')->nullable()->constrained('tickets')->onDelete('set null'); 
+            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null'); 
             $table->timestamp('payment_date'); 
             $table->decimal('amount', 10, 2);
             $table->enum('status', ['pending', 'completed', 'failed'])->default('pending');

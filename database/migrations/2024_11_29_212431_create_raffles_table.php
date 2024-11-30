@@ -15,15 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->foreignId('lottery_id')->constrained('lotteries')->onDelete('set null');
+            $table->foreignId('lottery_id')->nullable()->constrained('lotteries')->onDelete('set null');
             $table->string('image')->nullable();
             $table->enum('status', ['active', 'inactive', 'completed', 'canceled'])->default('active');
             $table->decimal('ticket_price', 10, 2);
             $table->integer('ticket_quantity');
             $table->decimal('sales_goal', 10, 2);
             $table->integer('tickets_sold')->default(0);
+            $table->integer('quantity_number_draws')->default(0);
             $table->decimal('collected', 10, 2)->default(0);
-            $table->foreignId('organizer_id')->constrained('users')->onDelete('set null');
+            $table->foreignId('organizer_id')->nullable()->constrained('users')->onDelete('set null');
             $table->date('start_date'); 
             $table->date('draw_date');
             $table->timestamps();

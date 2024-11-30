@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('raffle_id')->constrained('raffles')->onDelete('set null');
+            $table->foreignId('raffle_id')->nullable()->constrained('raffles')->onDelete('set null');
             $table->integer('number'); 
             $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('set null'); 
             $table->enum('status', ['available', 'sold'])->default('available');

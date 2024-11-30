@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('draws', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('raffle_id')->constrained('raffles')->onDelete('set null'); 
-            $table->foreignId('lottery_id')->constrained('lotteries')->onDelete('set null'); 
+            $table->foreignId('raffle_id')->nullable()->constrained('raffles')->onDelete('set null'); 
+            $table->foreignId('lottery_id')->nullable()->constrained('lotteries')->onDelete('set null'); 
             $table->string('winning_number'); 
             $table->date('draw_date'); 
             $table->enum('status', ['pending', 'completed', 'canceled'])->default('pending'); 
