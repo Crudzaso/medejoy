@@ -13,7 +13,7 @@
         <div class="col-lg-4 col-6">
             <div class="small-box bg-success">
                 <div class="inner">
-                    <h3>$12,340</h3>
+                   <h3>${{ number_format($totalSales, 2) }}</h3>
                     <p>Ventas Totales</p>
                 </div>
                 <div class="icon">
@@ -24,7 +24,7 @@
         <div class="col-lg-4 col-6">
             <div class="small-box bg-info">
                 <div class="inner">
-                    <h3>5</h3>
+                    <h3>{{ $rafflesActive }}</h3>
                     <p>Rifas Activas</p>
                 </div>
                 <div class="icon">
@@ -35,7 +35,7 @@
         <div class="col-lg-4 col-6">
             <div class="small-box bg-warning">
                 <div class="inner">
-                    <h3>250</h3>
+                    <h3>{{ $ticketsSold}} </h3>
                     <p>Boletos Vendidos</p>
                 </div>
                 <div class="icon">
@@ -77,24 +77,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Rifa del Auto</td>
-                                <td>100</td>
-                                <td>$5,000</td>
-                                <td><span class="badge badge-success">Activa</span></td>
-                            </tr>
-                            <tr>
-                                <td>Rifa de la Moto</td>
-                                <td>50</td>
-                                <td>$2,500</td>
-                                <td><span class="badge badge-success">Activa</span></td>
-                            </tr>
-                            <tr>
-                                <td>Rifa de la Casa</td>
-                                <td>100</td>
-                                <td>$10,000</td>
-                                <td><span class="badge badge-secondary">Inactiva</span></td>
-                            </tr>
+                           @foreach ($rafflesDetails as $raffle)
+                                <tr>
+                                    <td>{{ $raffle->title }}</td>
+                                    <td>{{ $raffle->tickets_sold }}</td>
+                                    <td>${{ number_format($raffle->collected, 2) }}</td>
+                                    <td>
+                                        <span class="badge badge-{{ $raffle->status === 'active' ? 'success' : 'secondary' }}">
+                                            {{ ucfirst($raffle->status) }}
+                                        </span>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -104,7 +98,7 @@
 </div>
 @endsection
 
-@section('js')
+{{--  @section('js')
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         // Datos ficticios para el gráfico
@@ -131,4 +125,4 @@
             }
         });
     </script>
-@endsection
+@endsection  --}}
