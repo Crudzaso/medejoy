@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Auth\SocialiteController;
+use App\Http\Controllers\OrganizerController;
 
 // Rutas protegidas para el Administrador
 Route::middleware(['auth', 'can:manage-users'])->group(function () {
@@ -48,3 +49,5 @@ Route::get('/auth/google/callback', [SocialiteController::class, 'handleGoogleCa
 
 Route::get('/auth/redirect/github', [SocialiteController::class, 'redirectToGitHub'])->name('github.login');
 Route::get('/auth/callback/github', [SocialiteController::class, 'handleGitHubCallback'])->name('github.callback');
+
+Route::get('dashboard/organizer',[OrganizerController::class,'dashboard'])->name('panel.organizer');
