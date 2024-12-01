@@ -344,10 +344,10 @@ return [
             'icon' => 'far fa-fw fa-file',
             'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
+        ['header' => 'Mi cuenta'],
         [
             'text' => 'Perfil',
-            'url' => 'admin/settings',
+            'url' => 'user/profile',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
