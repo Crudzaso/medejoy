@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Raffle;
 use Illuminate\Http\Request;
 
 class OrganizerController extends Controller
@@ -16,8 +17,20 @@ class OrganizerController extends Controller
 
       public function dashboard()
     {
+
+        $organizerId= auth()->id();
+
+        
+        $totalSales = Raffle::where('organizer_id', $organizerId)->sum('collected');
+
+        $rafflesActive = Raffle::where('organizer_id', $organizerId)->where('status','active')->count();
+
+        $ticketsSold = Raffle::where('organizer_id',$organizerId)->sum('tickets_sold');
+
+        $rafflesDetails = Raffle::where('organizer_id', $organizerId)->select('title', 'tickets_sold', 'collected', 'status')->get();
+
         // Lógica para cargar datos del dashboard (ejemplo: estadísticas)
-        return view('panelOrganizer.dashboard');
+        return view('panelOrganizer.dashboard',compact('totalSales','rafflesActive','ticketsSold','rafflesDetails'));
     }
 
     /**
