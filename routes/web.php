@@ -17,14 +17,14 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/', function () {
+        return view('main');
+    })->name('main');
 });
 
 // Rutas generales
 Route::get('/', function () {
-    return view('welcome');
+    return view('main');
 });
 
 Route::resource('usuarios', UserController::class)->except(['show']);

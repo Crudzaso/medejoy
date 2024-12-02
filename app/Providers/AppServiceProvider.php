@@ -35,5 +35,6 @@ class AppServiceProvider extends ServiceProvider
         Blade::component('layouts.partials.header', 'header');
         Blade::component('layouts.partials.sidebar', 'sidebar');
         Blade::component('layouts.partials.profile', 'profile');
+        Blade::component('layouts.partials.content', 'content');
     }
 }

@@ -1,7 +1,7 @@
 <!--begin::Header-->
-<div id="kt_app_header" class="app-header">
+<div id="kt_app_header" class="app-header" style="background-color: lightgray; border: solid 2px darkgray">
     <!--begin::Header container-->
-    <div class="app-container container-fluid d-flex align-items-stretch justify-content-between" id="kt_app_header_container">
+    <div class="app-container container-fluid d-flex justify-content-around" id="kt_app_header_container">
         <!--begin::Header logo-->
         <div class="app-header-logo d-flex align-items-center ps-lg-2 me-lg-10">
             <!--begin::Mobile toggle-->
@@ -11,7 +11,7 @@
             <!--end::Mobile toggle-->
             <!--begin::Logo image-->
             <a href="#">
-                <img src="{{asset('assets/logo/Dream_it_Raffle_it_Win_it-Photoroom.png')}}" alt="Logo" class="medejoy_logo" width="70px" height="70px">
+                <img src="{{asset('assets/logo/medejoy-logo.png')}}" alt="Logo" class="medejoy_logo" width="70px" height="70px">
             </a>
             <!--end::Logo image-->
         </div>

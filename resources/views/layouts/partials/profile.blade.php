@@ -9,13 +9,12 @@
         <!--end::Menu wrapper-->
     </div>
 @else
- <div style="flex-direction: row; display: flex; justify-content: space-evenly; width: 300px; margin-right: 250px; gap: 10px; padding-right: 20px;">
-    <a href="{{ route('login') }}" class="btn btn-primary" style="font-size: small; width: 150px; margin-top: 10px; display: inline-block; text-align: center; text-decoration: none; padding: 10px;">
-        Iniciar sesión
-    </a>
-    <a href="{{ route('register') }}" class="btn btn-primary" style="font-size: small; margin-right: 150px; margin-top: 10px; display: inline-block; text-align: center; text-decoration: none; padding: 10px;">
-        Registrarse
-    </a>
-</div>
+    <div style="flex-direction: row; display: flex; justify-content: space-evenly; width: 300px; margin-right: 250px;  gap: 10px; padding-right: 20px;">
+        <form action="{{ route('login') }}" method="GET">
+            <button type="submit" class="btn btn-dark" style="font-size: small; width: 150px">Iniciar sesión</button>
+        </form>
+        <form action="{{ route('register') }}" method="GET">
+            <button type="submit" class="btn btn-dark" style="font-size: small">Registrarse</button>
+        </form>
+    </div>
 @endif
-
