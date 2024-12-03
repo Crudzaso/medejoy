@@ -23,8 +23,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/user/profile', function () {
-        return view('profile');
+   Route::get('/user/profile', function () {
+    return view('profile.show'); // Cambiado de 'profile' a 'profile.show'
     })->name('profile');
 
     // Opciones de clientes para comprar rifas (ejemplo)
@@ -40,7 +40,7 @@ Route::middleware([
     'verified',
     'role:organizer|admin', // Roles permitidos: organizer, admin
 ])->group(function () {
-    Route::get('/dashboard/organizer', [OrganizerController::class, 'dashboard'])->name('panel.organizer');
+    Route::get('/dashboard-organizador', [OrganizerController::class, 'dashboard'])->name('panel.organizer');
 
     // Opciones específicas para organizadores
     Route::get('/raffles/create', [OrganizerController::class, 'create'])->name('raffles.create');
